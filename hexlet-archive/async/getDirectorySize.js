@@ -1,32 +1,27 @@
-//считает размер переданной директории не включая поддиректории
+// считает размер переданной директории не включая поддиректории
 
-import path from "path";
-import _ from "lodash";
-import fs from "fs/promises";
+import path from 'path';
+import _ from 'lodash';
+import fsp from 'fs/promises';
+import fs from 'fs';
+import async from 'async';
 
 export default (dirpath) => {
-  const promise = fs.readdir(dirpath, "utf-8").then((files) => {
-    const promises = files.map((name) => fs.stat(path.join(dirpath, name)));
+  const promise = fsp.readdir(dirpath, 'utf-8').then((files) => {
+    const promises = files.map((name) => fsp.stat(path.join(dirpath, name)));
     return Promise.all(promises);
   });
 
-  return promise.then((stats) =>
-    _.sumBy(
-      stats.filter((stat) => stat.isFile()),
-      "size"
-    )
-  );
+  return promise.then((stats) => _.sumBy(
+    stats.filter((stat) => stat.isFile()),
+    'size',
+  ));
 };
 
-//example
+// example
 // getDirectorySize('/usr/local/bin').then(console.log);
 
-//считает размер переданной директории не включая поддиректории на кол-бэках
-import path from "path";
-import fs from "fs";
-import _ from "lodash";
-import async from "async";
-
+// считает размер переданной директории не включая поддиректории на кол-бэках
 const getDirectorySize = (dirpath, cb) => {
   fs.readdir(dirpath, (error1, files) => {
     if (error1) {
@@ -41,14 +36,14 @@ const getDirectorySize = (dirpath, cb) => {
       }
       const sum = _.sumBy(
         stats.filter((stat) => stat.isFile()),
-        "size"
+        'size',
       );
       cb(null, sum);
     });
   });
 };
 
-//example
+// example
 // getDirectorySize('/usr/local/bin', (err, size) => {
 //   console.log(size);
 // });

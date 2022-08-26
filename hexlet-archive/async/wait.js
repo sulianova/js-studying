@@ -1,34 +1,30 @@
-//ТАЙМЕР-ПРОМИС
-export default (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, ms);
-  });
-};
+// ТАЙМЕР-ПРОМИС
+export default (ms) => new Promise((resolve) => {
+  setTimeout(() => {
+    resolve();
+  }, ms);
+});
 
-//alternative version
+// alternative version
 // export default (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-//check
+// check
 // wait(1000).then(() => console.log('time is over!'));
 
-//ТАЙМЕР-ПРОМИС, который ловит и выводит ошибку
-const myFunc = (str) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(function () {
-      try {
-        str.toLowerCase();
-        resolve();
-      } catch (e) {
-        // throw new Error(e);
-        reject(e);
-      }
-    }, 3000);
-  });
-};
+// ТАЙМЕР-ПРОМИС, который ловит и выводит ошибку
+const myFunc = (str) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    try {
+      str.toLowerCase();
+      resolve();
+    } catch (e) {
+      // throw new Error(e);
+      reject(e);
+    }
+  }, 3000);
+});
 
-//example
+// example
 // myFunc(6789)
 //     .then(() => console.log('success'))
 //     .catch(() => console.log('error'));

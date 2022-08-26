@@ -1,0 +1,30 @@
+{
+  "name": "js-studying",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hexlet/immutable-fs-trees": "^0.7.1",
+    "async": "^3.2.4",
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.21",
+    "path": "^0.12.7",
+    "url": "^0.11.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "intelli-espower-loader": "^1.1.0",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "mocha": "^10.0.0",
+    "power-assert": "^1.6.1",
+    "prettier": "^2.7.1"
+  }
+}

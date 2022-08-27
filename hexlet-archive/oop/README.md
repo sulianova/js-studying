@@ -18,3 +18,26 @@ const books = [
 ];
 const invalidBooks = getInvalidBooks(books); // [{ author: 'author 2' }]
 ```
+
+#### normalize
+Реализуйте и экспортируйте по умолчанию функцию normalize() которая принимает на вход список городов и стран, нормализует их имена, сортирует города и группирует их по стране.
+
+Пример:
+```
+const countries = [
+  { name: 'Miami', country: 'usa' },
+  { name: 'samarA', country: '  ruSsiA' },
+  { name: 'Moscow ', country: ' Russia' },
+];
+
+normalize(countries);
+// {
+//   russia: [
+//     'moscow',
+//     'samara',
+//   ],
+//   usa: [
+//     'miami',
+//   ],
+// }
+```

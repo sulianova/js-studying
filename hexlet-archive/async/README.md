@@ -10,7 +10,7 @@ getDirectorySize('/usr/local/bin', (err, size) => {
 ```
 
 
-#### exchange()
+#### exchange
 Реализуйте и экспортируйте асинхронную функцию exchange(), которая обменивает содержимое двух файлов.
 
 Пример:

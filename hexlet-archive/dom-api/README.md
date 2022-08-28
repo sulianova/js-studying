@@ -22,6 +22,18 @@
 </body>
 ```
 
+### extractData
+Реализуйте и экспортируйте по умолчанию функцию, которая принимает на вход `document.documentElement`, извлекает из него параграфы и возвращает массив из их содержимого.
+
+Пример:
+```
+const data = extractData(document.documentElement);
+console.log(data);
+// [
+//   'First paragraph'
+// ]
+```
+
 #### PATCH request
 Обновить данные в браузере
 

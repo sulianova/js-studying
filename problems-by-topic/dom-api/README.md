@@ -81,6 +81,21 @@ console.log(document.body.innerHTML);
 // </body>
 ```
 
+### normalize2
+Реализуйте и экспортируйте по умолчанию функцию, которая нормализует имена классов для всех элементов на странице. В данном случае это означает, что происходит преобразование всех классов, написанных с использованием `kebab` нотации, в `camelCase` нотацию: `text-center => textCenter`.
+
+Пример:
+```
+// <body>
+//   <div class="text-center row-b">Bam</div>
+// </body>
+normalize(document);
+console.log(document.body.innerHTML);
+// <body>
+//   <div class="textCenter rowB">Bam</div>
+// </body>
+```
+
 ### PATCH request
 Обновить данные в браузере
 

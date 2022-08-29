@@ -14,9 +14,11 @@
     "assert": "^2.0.0",
     "async": "^3.2.4",
     "axios": "^0.27.2",
+    "core-js": "^3.25.0",
     "fs": "^0.0.1-security",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
+    "regenerator-runtime": "^0.13.9",
     "url": "^0.11.0",
     "yup": "^0.32.11"
   },

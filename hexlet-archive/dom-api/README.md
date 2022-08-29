@@ -62,6 +62,25 @@ console.log(data);
 // }
 ```
 
+#### prettify
+Реализуйте и экспортируйте функцию по умолчанию, которая находит текст (дочерние текстовые узлы) внутри элемента `<div>` и оборачивает текст в параграф. Переводы строк и отступы изменяться не должны.
+
+Пример:
+```
+// <body>
+//   <p>Boom</p>
+//   text
+//   <div>Bam</div>
+// </body>
+prettify(document);
+console.log(document.body.innerHTML);
+// <body>
+//   <p>Boom</p>
+//   text
+//   <div><p>Bam</p></div>
+// </body>
+```
+
 #### PATCH request
 Обновить данные в браузере
 

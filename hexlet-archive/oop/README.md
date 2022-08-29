@@ -1,6 +1,6 @@
-### Object oriented programming
+## Object oriented programming
 
-#### getInvalidBooks
+### getInvalidBooks
 Реализуйте и экспортируйте по умолчанию функцию, которая принимает на вход список книг, находит среди них невалидные и возвращает их наружу.
 
 Описания формата каждой книги:
@@ -19,7 +19,7 @@ const books = [
 const invalidBooks = getInvalidBooks(books); // [{ author: 'author 2' }]
 ```
 
-#### normalize
+### normalize
 Реализуйте и экспортируйте по умолчанию функцию normalize() которая принимает на вход список городов и стран, нормализует их имена, сортирует города и группирует их по стране.
 
 Пример:

@@ -22,7 +22,7 @@
 </body>
 ```
 
-### extractData
+#### extractData
 Реализуйте и экспортируйте по умолчанию функцию, которая принимает на вход `document.documentElement`, извлекает из него параграфы и возвращает массив из их содержимого.
 
 Пример:
@@ -34,7 +34,7 @@ console.log(data);
 // ]
 ```
 
-### extractData2
+#### extractData2
 Реализуйте логику функции, которая принимает на вход document, извлекает из него данные и возвращает объект нужной структуры.
 
 В примере выше "Category Name" - это заголовок категории, "Category Description" - описание категории и две статьи: "Article Name 1" с описанием "Article Description 1" и "Article Name 2" с описанием "Article Description 2".

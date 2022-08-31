@@ -14,8 +14,6 @@ const render = (element, data) => {
     element.replaceWith(div);
 };
 
-89653592366
-
 export default () => {
     const formElement = document.querySelector('.feedback-form');
     const handle = (element) => {

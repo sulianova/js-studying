@@ -13,7 +13,7 @@ const generateField = () => {
     return tableEl;
 };
 
-  export default () => {
+export default () => {
     const tableEl = generateField();
   
     let currentSymbol = 'x';
@@ -30,4 +30,4 @@ const generateField = () => {
   
     const root = document.querySelector('.root');
     root.append(tableEl);
-  };
+};

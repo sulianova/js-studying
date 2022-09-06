@@ -9,13 +9,13 @@
         'short' – вернётся массив со значениями sat и sun
 */
 export const getWeekends = (format) => {
-  const longFormat = ["saturday", "sunday"];
-  const shortFormat = ["sat", "sun"];
+  const longFormat = ['saturday', 'sunday'];
+  const shortFormat = ['sat', 'sun'];
 
   switch (format) {
-    case "long":
+    case 'long':
       return longFormat;
-    case "short":
+    case 'short':
       return shortFormat;
     default:
       return longFormat;
@@ -37,10 +37,12 @@ export const swap = (m) => {
     m[0] = lastItem;
     m[m.length - 1] = firstItem;
     return m;
-  } else return m;
+  }
+  
+  return m;
 };
 
-swap(["one", "two", "three"]);
+swap(['one', 'two', 'three']);
 // => [ 'three', 'two', 'one' ]
 
 /*  Реализуйте и экспортируйте по умолчанию функцию,
@@ -55,10 +57,11 @@ swap(["one", "two", "three"]);
 export const get = (items, index, param = null) => {
   if (index < items.length && index >= 0) {
     return items[index];
-  } else return param;
+  }
+  return param;
 };
 
-const cities = ["moscow", "london", "berlin", "porto"];
+const cities = ['moscow', 'london', 'berlin', 'porto'];
 get(cities, 7);
 // => nill
 
@@ -71,15 +74,15 @@ get(cities, 7);
 */
 export const addPrefix = (items, str) => {
   const result = [];
-  for (const item in items) {
-    const newItem = `${str} ${items[item]}`;
+  for (const item of items) {
+    const newItem = `${str} ${item}`;
     result.push(newItem);
   }
   return result;
 };
 
-const namesList = ["john", "smith", "karl"];
-console.log(addPrefix(namesList, "Mr"));
+const namesList = ['john', 'smith', 'karl'];
+addPrefix(namesList, 'Mr');
 // => [ 'Mr john', 'Mr smith', 'Mr karl' ]
 
 /*  Реализуйте и экспортируйте функцию reverse(),
@@ -98,7 +101,7 @@ export const reverse = (coll) => {
   }
 };
 
-const names = ["john", "smith", "karl"];
+const names = ['john', 'smith', 'karl'];
 
 reverse(names);
 // console.log(names);
@@ -193,15 +196,15 @@ export const getTotalAmount = (money, currency) => {
 };
 
 const money = [
-  "eur 10",
-  "rub 50",
-  "eur 5",
-  "rub 10",
-  "rub 10",
-  "eur 100",
-  "rub 200",
+  'eur 10',
+  'rub 50',
+  'eur 5',
+  'rub 10',
+  'rub 10',
+  'eur 100',
+  'rub 200',
 ];
-getTotalAmount(money, "rub");
+getTotalAmount(money, 'rub');
 // => 270
 
 /*  Реализуйте и экспортируйте функцию,
@@ -219,15 +222,10 @@ export const getSuperSeriesWinner = (coll) => {
     return canadaGolls > ussrGolls ? (acc += 1) : acc;
   }, 0);
   const bothVins = coll.reduce((acc, [canadaGolls, ussrGolls]) => {
-    return canadaGolls == ussrGolls ? (acc += 1) : acc;
+    return canadaGolls === ussrGolls ? (acc += 1) : acc;
   }, 0);
 
-  console.log(canadaVins);
-  return canadaVins > (coll.length - bothVins) / 2
-    ? "canada"
-    : canadaVins == (coll.length - bothVins) / 2
-    ? null
-    : "ussr";
+  return canadaVins > (coll.length - bothVins) / 2 ? 'canada' : canadaVins === (coll.length - bothVins) / 2 ? null : 'ussr';
 };
 
 // Первое число – сколько забила Канада
@@ -253,7 +251,7 @@ getSuperSeriesWinner(scores); // 'canada'
 */
 const buildDefinitionList = (definitions) => {
   if (definitions.length === 0) {
-    return "";
+    return '';
   }
 
   const parts = [];
@@ -264,15 +262,15 @@ const buildDefinitionList = (definitions) => {
     parts.push(`<dt>${name}</dt><dd>${description}</dd>`);
   }
 
-  const innerValue = parts.join("");
+  const innerValue = parts.join('');
   const result = `<dl>${innerValue}</dl>`;
 
   return result;
 };
 
 const definitions = [
-  ["Блямба", "Выпуклость, утолщения на поверхности чего-либо"],
-  ["Бобр", "Животное из отряда грызунов"],
+  ['Блямба', 'Выпуклость, утолщения на поверхности чего-либо'],
+  ['Бобр', 'Животное из отряда грызунов'],
 ];
 
 buildDefinitionList(definitions);
@@ -289,26 +287,27 @@ buildDefinitionList(definitions);
     символов, включая любые спецсимволы (без пробелов).
 */
 export const makeCensored = (str, value) => {
-  const arr = str.split(" ");
+  const arr = str.split(' ');
 
   const newArr = [];
   for (const word of arr) {
-    const newWord = value.includes(word) ? "$#%!" : word;
+    const newWord = value.includes(word) ? '$#%!' : word;
     newArr.push(newWord);
   }
 
-  return newArr.join(" ");
+  return newArr.join(' ');
 };
 
-const sentence = "When you play the game of thrones, you win or you die";
-makeCensored(sentence, ["die", "play"]);
+const sentence = 'When you play the game of thrones, you win or you die';
+makeCensored(sentence, ['die', 'play']);
 // => When you $#%! the game of thrones, you win or you $#%!
 
 /*  Реализуйте и экспортируйте по умолчанию функцию,
     принимающую на вход два массива и возвращающую количество
     общих уникальных значений в обоих массивах.
 */
-import _ from "lodash";
+import _ from 'lodash';
+
 export const getSameCount = (array1, array2) => {
   let sum = 0;
   const array1Uniq = _.uniq(array1);
@@ -329,14 +328,14 @@ console.log(getSameCount([], [])); // 0
     всего один символ — y. А в строке 111yya! — используется
     четыре символа: 1, y, a и !.
 */
-// import _ from "lodash";
+// import _ from 'lodash';
 const countUniqChars = (str) => {
-  const array = str.split("");
+  const array = str.split('');
   const result = _.uniq(array);
   return result.length;
 };
 
-const text = "yyab";
+const text = 'yyab';
 countUniqChars(text);
 // => y, a, b
 
@@ -388,9 +387,9 @@ export const checkIsBalanced = (expression) => {
   // Проходим по каждому символу в строке
   for (const symbol of expression) {
     // Смотрим открывающий или закрывающий
-    if (symbol === "(") {
+    if (symbol === '(') {
       stack.push(symbol);
-    } else if (symbol === ")") {
+    } else if (symbol === ')') {
       // Если для закрывающего не нашлось открывающего, значит баланса нет
       if (!stack.pop()) {
         return false;
@@ -401,7 +400,7 @@ export const checkIsBalanced = (expression) => {
   return stack.length === 0;
 };
 
-checkIsBalanced("()()()()()()()()())");
+checkIsBalanced('()()()()()()()()())');
 // => false
 
 /*  Реализуйте и экспортируйте функцию, которая
@@ -416,12 +415,11 @@ checkIsBalanced("()()()()()()()()())");
     
     Скобки должны закрываться в правильном порядке.
 */
-const openingSymbols = ["(", "[", "{", "<"];
-const closingSymbols = [")", "]", "}", ">"];
+const openingSymbols = ['(', '[', '{', '<'];
+const closingSymbols = [')', ']', '}', '>'];
 
 const isOpeningSymbol = (symbol) => openingSymbols.includes(symbol);
-const getClosingSymbolFor = (symbol) =>
-  closingSymbols[openingSymbols.indexOf(symbol)];
+const getClosingSymbolFor = (symbol) => closingSymbols[openingSymbols.indexOf(symbol)];
 
 export const isBracketStructureBalanced = (str) => {
   const stack = [];
@@ -440,7 +438,7 @@ export const isBracketStructureBalanced = (str) => {
   return stack.length === 0;
 };
 
-isBracketStructureBalanced("{<>}}"); // false
+isBracketStructureBalanced('{<>}}'); // false
 
 /*  Реализуйте и экспортируйте функцию,
     которая принимает на вход два отсортированных массива
@@ -448,7 +446,7 @@ isBracketStructureBalanced("{<>}}"); // false
     A и B — это массив только с теми элементами A и B,
     которые одновременно принадлежат обоим массивам, без дублей.
 */
-// import _ from "lodash";
+// import _ from 'lodash';
 export const getIntersectionOfSortedArrays = (array1, array2) => {
   const filteredArray = array1.filter((value) => array2.includes(value));
   return _.uniq(filteredArray);
@@ -473,7 +471,7 @@ const getDistance = ([x1, y1], [x2, y2]) => {
   const xs = x2 - x1;
   const ys = y2 - y1;
 
-  return Math.sqrt(xs ** 2 + ys ** 2);
+  return Math.sqrt(xs * xs + ys * ys);
 };
 
 export const getTheNearestLocation = (locations, currentPoint) => {
@@ -498,9 +496,9 @@ export const getTheNearestLocation = (locations, currentPoint) => {
 };
 
 const locations = [
-  ["Park", [10, 5]],
-  ["Sea", [1, 3]],
-  ["Museum", [8, 4]],
+  ['Park', [10, 5]],
+  ['Sea', [1, 3]],
+  ['Museum', [8, 4]],
 ];
 
 const currentPoint = [5, 5];

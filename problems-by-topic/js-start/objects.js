@@ -1,35 +1,39 @@
+// Добавить в объект новый ключ со значением
 const staff = {
   'general director': {
-      name: "Belkin Igor",
-      age: "45",
+      name: 'Belkin Igor',
+      age: '45',
       married: true,
       children: false,
   },
 
   'product manager': {
-      name: "Eliseeva Helen",
-      age: "35",
+      name: 'Eliseeva Helen',
+      age: '35',
       married: false,
       children: ['Ivan', 'Alex'],
   }
-}
-
-console.log(staff);
+};
 
 staff['general director'].number = '88009870478';
 staff['product manager'].number = '88009870000';
 
-console.log(staff);
 
-const _ = require("lodash");
+/*  Реализуйте и экспортируйте по умолчанию функцию,
+    которая "нормализует" данные переданного урока.
+    То есть приводит их к определенному виду. Нормализация происходит
+    путём изменения исходного объекта.
+    Функция должна обновлять содержимое урока по следующим правилам:
+      Имя капитализируется.
+      Весь текст описания приводится к нижнему регистру.
+*/
+import _ from 'lodash';
 
-const normalize = (data) => {
+export const normalize = (data) => {
     data.name = _.capitalize(data.name);
     data.description = data.description.toLowerCase();
     return data;
 };
-
-export default normalize;
 
 const lesson = {
     name: 'ДеструКТУРИЗАЦИЯ',
@@ -37,12 +41,17 @@ const lesson = {
   };
 
 normalize(lesson);
-
-console.log(lesson);
-
+// => { name: 'Деструктуризация', description: 'как удивить друзей' }
 
 
-export default (company1, company2) => {
+/*  Реализуйте и экспортируйте по умолчанию функцию,
+    которая сравнивает объекты по совпадению данных,
+    а не по ссылкам. Эта функция принимает на вход
+    две компании и возвращает true, если их структура одинаковая,
+    и false в обратном случае. Проверка должна проходить
+    по свойствам name, state, website.
+*/
+export const is = (company1, company2) => {
     const keys = ['name', 'state', 'website'];
     for (const key of keys) {
       if (company1[key] !== company2[key]) {
@@ -51,89 +60,77 @@ export default (company1, company2) => {
     }
   
     return true;
-  };
+};
 
-const company1 = { name: 'Hexlet', state: 'published', website: 'https://hexlet.io' };
-const company2 = { name: 'Hexlet', state: 'published', website: 'https://hexlet.io' };
+const company1 = { name: 'Hexlet', state: 'moderating', website: 'https://hexlet.io' };
+const company2 = { name: 'CodeBasics', state: 'published', website: 'https://code-basics.com' };
 
+is(company1, company2);
+// => false
 
-console.log(company1["name"] === company2["name"]);
+/* Реализуйте и экспортируйте по умолчанию функцию,
+которая принимает на вход имя сайта и возвращает информацию о нем.
+Если домен передан без указания протокола, то по умолчанию берется http
+*/
+// import _ from 'lodash';
 
+export const getDomainInfo = (domain) => {
+  let scheme = '';
+  if (domain.startsWith('https://')) {
+    scheme = 'https';
+  // else if другие протоколы
+  } else {
+    scheme = 'http';
+  }
 
+  const name = domain.replace(`${scheme}://`, '');
 
-const _ = require("lodash");
-
-const getDomainInfo = (siteName) => {
-    let scheme = "";
-    const name = _.last(siteName.split('/'));
-
-    if ( siteName.startsWith('h') === false ) {
-        scheme = 'http';
-    }
-    else {
-        scheme = siteName.split(':')[0];    
-    }
-   
-    const info = { scheme, name, };
-    console.log(info);
+  return { scheme, name };
 };
 
 getDomainInfo('https://hexlet.io');
+// => { scheme: 'https', name: 'hexlet.io' }
 
-export default (domain) => {
-    let scheme = '';
-    if (domain.startsWith('https://')) {
-      scheme = 'https';
-    // else if другие протоколы
-    } else {
-      scheme = 'http';
-    }
-  
-    const name = domain.replace(`${scheme}://`, '');
-  
-    return { scheme, name };
-  };
+/*  Реализуйте и экспортируйте по умолчанию функцию,
+    которая считает количество слов в предложении,
+    и возвращает объект. В объекте свойства — это слова
+    (приведенные к нижнему регистру), а значения — это то,
+    сколько раз слово встретилось в предложении.
+    Слова в предложении могут находиться в разных регистрах.
+    Перед подсчетом их нужно приводить в нижний регистр,
+    чтобы не пропускались дубли.
+*/
+// import _ from 'lodash';
 
-
-
-const _ = require("lodash");
-
-const countWords = (str) => {
+export const countWords = (str) => {
     const strLowerCase = str.toLowerCase();
     const words = _.words(strLowerCase);
-    const result ={};
+    const result = {};
 
     for (const word of words) {
-
         if (Object.hasOwn(result, word)) {
             result[word] += 1;
           } else {
             result[word] = 1;
           }
-
+         // result[word] = (result[word] ?? 0) + 1;
     }
     return result;
 };
 
-export default countWords;
 
 const text1 = 'another one sentence with strange Words words';
 countWords(text1);
+// => { another: 1, one: 1, sentence: 1, with: 1, strange: 1, words: 2 }
 
-export default (sentence) => {
-    const words = _.words(sentence);
-    const result = {};
-    for (const word of words) {
-      const lowerWord = word.toLowerCase();
-      result[lowerWord] = (result[lowerWord] ?? 0) + 1;
-    }
-  
-    return result;
-  };
 
-  
-
-export default (data, keys) => {
+/*  Реализуйте и экспортируйте функцию,
+    которая формирует из переданного объекта другой объект,
+    включающий только указанные свойства. Параметры:
+      Исходный объект
+      Массив имен свойств
+*/
+export const pick = (data, keys) => {
   const result = {};
   
   for (const key of keys) {
@@ -145,12 +142,26 @@ export default (data, keys) => {
   return result;
 };
 
+const data2 = {
+  user: 'ubuntu',
+  cores: 4,
+  os: 'linux',
+};
+ 
+pick(data2, ['user']); // { user: 'ubuntu' }
 
-const get = (data, keys) => {
+
+/*  Реализуйте и экспортируйте функцию,
+    которая извлекает из объекта любой глубины
+    вложенности значение по указанным ключам. Параметры:
+      исходный объект
+      цепочка ключей (массив), по которой ведётся поиск значения
+    В случае, когда добраться до значения невозможно, возвращается null.
+*/
+export const get = (data, keys) => {
   let current = data;
   for (const key of keys) {
-    const hasProperty = Object.hasOwn(current, key);
-    if (!hasProperty) {
+    if (!Object.hasOwn(current, key)) {
       return null;
     }
     current = current[key];
@@ -159,7 +170,7 @@ const get = (data, keys) => {
   return current;
 };
 
-const data = {
+const data3 = {
   user: 'ubuntu',
   hosts: {
     0: {
@@ -173,16 +184,9 @@ const data = {
   },
 };
 
-
- 
-console.log(get(data, ['undefined'])); // null
-console.log(get(data, ['user'])); // 'ubuntu'
-console.log(get(data, ['user', 'ubuntu'])); // null
-console.log(get(data, ['hosts', 1, 'name'])); // 'web2'
-console.log(get(data, ['hosts', 0])); // { name: 'web1' }
-console.log(get(data, ['hosts', 1, null])); // 3
-console.log(get(data, ['hosts', 1, 'active'])); // false
-
+get(data3, ['user', 'ubuntu']); // null
+get(data3, ['hosts', 1, 'name']); // 'web2'
+get(data3, ['hosts', 0]); // { name: 'web1' }
 
 
 
@@ -205,6 +209,7 @@ function get(data, keys) {
     }
   }
 }
+
 
 const _ = require("lodash");
 
@@ -314,7 +319,3 @@ const run = (text) => {
 
   return takeLast(text, 4);
 }
-
-
-
-

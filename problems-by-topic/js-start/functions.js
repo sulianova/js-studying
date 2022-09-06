@@ -381,3 +381,32 @@ const fnWithContext = bind(obj, fn);
 // Принимает столько же аргументов сколько и исходная функция
 fnWithContext(3); // 8
 
+const scores = [
+  [3, 7],
+  [4, 1],
+  [4, 4],
+  [3, 5],
+  [4, 5],
+  [3, 2],
+  [4, 3],
+  [6, 5],
+];
+
+
+const isPrime = (num) => {
+  if (num <= 1) return false;
+  if (num === 2) return true;
+  let num2 = Math.sqrt(num);
+  for (let i = 2; i <= num2; i += 1) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+};
+
+function sayPrimeOrNot(number) {
+  return (isPrime(number) === true) ? 'yes' : 'no';
+}
+
+console.log(sayPrimeOrNot(8));

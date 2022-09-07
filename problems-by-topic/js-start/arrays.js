@@ -579,5 +579,49 @@ export const summaryRanges = (numbers) => {
 summaryRanges([110, 111, 112, 111, -5, -4, -2, -3, -4, -5]);
 // ['110->112', '-5->-4']
 
+/*  Реализуйте функцию getLongestLength(),
+    принимающую на вход строку и возвращающую длину
+    максимальной последовательности из неповторяющихся символов.
+    Подстрока может состоять из одного символа.
+    Например в строке qweqrty, можно выделить
+    следующие подстроки: qwe, weqrty. Самой длинной будет weqrty.
+*/
+export const getLongestLength = (str) => {
+  let sequence = [];
+  let maxLength = 0;
 
+  for (const char of str) {
+    const index = sequence.indexOf(char);
+    sequence.push(char);
+    if (index !== -1) {
+      sequence = sequence.slice(index + 1);
+    }
+    maxLength = Math.max(sequence.length, maxLength);
+  }
 
+  return maxLength;
+};
+
+getLongestLength('abcdeef'); // 5
+getLongestLength('1234561qweqwerqer'); // 9
+getLongestLength(''); // 0
+
+// Альтернативное решение
+// export const getLongestLength = (str) => {
+//   const letters = str.split('');
+//   let subString = [];
+//   let longestLength = 0;
+//   let strForSearch = '';
+
+//   for (let i = 0; i < letters.length; i += 1) {
+//     subString.push(letters[i]);
+//     longestLength = Math.max(longestLength, subString.length);
+//     if (subString.includes(letters[i + 1])) {
+//       strForSearch = str.slice(0, i + 1);
+//       i = strForSearch.lastIndexOf(`${letters[i + 1]}`);
+//       subString = [];
+//     }
+//   }
+//   return longestLength;
+
+// };

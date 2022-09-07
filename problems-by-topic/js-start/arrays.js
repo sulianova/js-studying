@@ -537,3 +537,47 @@ export const flatten = (coll) => {
 
 flatten([1, [[2], [3]], [9]]);
 // => [1, [2], [3], 9]
+
+/*  Реализуйте и экспортируйте по умолчанию функцию,
+    которая возвращает длину последнего слова переданной
+    на вход строки. Словом считается любаяпоследовательность,
+    не содержащая пробелов.
+*/
+// import _ from 'lodash';
+export const getLastWordLength = (sentence) => {
+  if (sentence.length === 0) {
+    return 0;
+  }
+  const sentenceArrayTrimed = sentence.trim().split(' ');
+  const lastWord = _.last(sentenceArrayTrimed);
+  return lastWord.length;
+};
+
+getLastWordLength('hello, world!  '); // 6
+
+/*  Реализуйте и экспортируйте по умолчанию функцию,
+    которая находит в массиве непрерывные возрастающие
+    последовательности чисел и возвращает массив с их перечислением.
+*/
+export const summaryRanges = (numbers) => {
+  let stack = [];
+  const result = [];
+
+  for (let i = 0; i < numbers.length; i +=1) {
+    stack.push(numbers[i]);
+    if (numbers[i] + 1 !==  numbers[i+1]) {
+      if (stack.length > 1) {
+        result.push(`${stack[0]}->${stack[stack.length - 1]}`);
+      }
+      stack = [];
+    } 
+  }
+
+  return result;
+};
+
+summaryRanges([110, 111, 112, 111, -5, -4, -2, -3, -4, -5]);
+// ['110->112', '-5->-4']
+
+
+

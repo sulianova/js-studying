@@ -410,3 +410,22 @@ function sayPrimeOrNot(number) {
 }
 
 console.log(sayPrimeOrNot(8));
+
+// import _ from 'lodash';
+
+export const average = (...rest) => {
+
+  let resultAverage = 0;
+
+  if (rest.length !== 0) {
+    resultAverage = _.sum(rest)/rest.length;
+  }
+  else resultAverage = null;
+
+  return resultAverage;
+};
+
+average(0); // 0
+average(0, 10); // 5
+average(-3, 4, 2, 10); // 3.25
+average(); // null

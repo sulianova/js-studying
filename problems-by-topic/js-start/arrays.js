@@ -606,22 +606,33 @@ getLongestLength('abcdeef'); // 5
 getLongestLength('1234561qweqwerqer'); // 9
 getLongestLength(''); // 0
 
-// Альтернативное решение
-// export const getLongestLength = (str) => {
-//   const letters = str.split('');
-//   let subString = [];
-//   let longestLength = 0;
-//   let strForSearch = '';
+/*  Реализуйте и экспортируйте по умолчанию функцию,
+  которая принимает на вход матрицу и возвращает список
+  элементов матрицы по порядку следования от левого верхнего
+  элемента по часовой стрелке к внутреннему.
+*/
+// import _ from 'lodash';
 
-//   for (let i = 0; i < letters.length; i += 1) {
-//     subString.push(letters[i]);
-//     longestLength = Math.max(longestLength, subString.length);
-//     if (subString.includes(letters[i + 1])) {
-//       strForSearch = str.slice(0, i + 1);
-//       i = strForSearch.lastIndexOf(`${letters[i + 1]}`);
-//       subString = [];
-//     }
-//   }
-//   return longestLength;
+// Поворачиваем матрицу против часовой стрелки
+const rotate = (matrix) => _.reverse(_.zip(...matrix));
 
-// };
+export const buildSnailPath = (matrix) => {
+  if (matrix.length === 0) {
+    return [];
+  }
+  const [head, ...tail] = matrix;
+  return [head, buildSnailPath(rotate(tail))].flat();
+};
+
+buildSnailPath([
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12],
+]); // [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7] 
+
+
+buildSnailPath([
+  [undefined, '', null],
+  [true, false, 'foo'],
+  [[], {}, { key: 'bar' }],
+]); // [undefined, '', null, 'foo', { key: 'bar' }, {}, [], true, false]

@@ -10,7 +10,7 @@
   "jest": {
     "testEnvironment": "jsdom"
   },
-  "author": "",
+  "author": "sulianova",
   "license": "ISC",
   "dependencies": {
     "@hexlet/immutable-fs-trees": "^0.7.1",

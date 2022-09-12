@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 export const normalize = (data) => {
   data.name = _.capitalize(data.name);
@@ -78,7 +78,6 @@ export const fill = (current, keys, data) => {
   const filteredData = keys.length > 0 ? _.pick(data, keys) : data;
   Object.assign(current, filteredData);
 };
-
 
 export const cloneDeep = (object) => {
   const result = {};

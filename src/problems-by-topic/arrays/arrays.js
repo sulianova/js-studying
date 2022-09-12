@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const getWeekends = (format) => {
   const longFormat = ['saturday', 'sunday'];
   const shortFormat = ['sat', 'sun'];
@@ -21,7 +23,7 @@ export const swap = (m) => {
     m[m.length - 1] = firstItem;
     return m;
   }
-  
+
   return m;
 };
 
@@ -111,12 +113,8 @@ export const getTotalAmount = (money, currency) => {
 };
 
 export const getSuperSeriesWinner = (coll) => {
-  const canadaVins = coll.reduce((acc, [canadaGolls, ussrGolls]) => {
-    return canadaGolls > ussrGolls ? (acc += 1) : acc;
-  }, 0);
-  const bothVins = coll.reduce((acc, [canadaGolls, ussrGolls]) => {
-    return canadaGolls === ussrGolls ? (acc += 1) : acc;
-  }, 0);
+  const canadaVins = coll.reduce((acc, [canadaGolls, ussrGolls]) => (canadaGolls > ussrGolls ? (acc += 1) : acc), 0);
+  const bothVins = coll.reduce((acc, [canadaGolls, ussrGolls]) => (canadaGolls === ussrGolls ? (acc += 1) : acc), 0);
 
   return canadaVins > (coll.length - bothVins) / 2 ? 'canada' : canadaVins === (coll.length - bothVins) / 2 ? null : 'ussr';
 };
@@ -151,8 +149,6 @@ export const makeCensored = (str, value) => {
 
   return newArr.join(' ');
 };
-
-import _ from 'lodash';
 
 export const getSameCount = (array1, array2) => {
   let sum = 0;
@@ -317,14 +313,14 @@ export const summaryRanges = (numbers) => {
   let stack = [];
   const result = [];
 
-  for (let i = 0; i < numbers.length; i +=1) {
+  for (let i = 0; i < numbers.length; i += 1) {
     stack.push(numbers[i]);
-    if (numbers[i] + 1 !==  numbers[i+1]) {
+    if (numbers[i] + 1 !== numbers[i + 1]) {
       if (stack.length > 1) {
         result.push(`${stack[0]}->${stack[stack.length - 1]}`);
       }
       stack = [];
-    } 
+    }
   }
 
   return result;

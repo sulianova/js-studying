@@ -107,3 +107,24 @@ export const getSortedNames = (users) => {
 
   return names.sort();
 };
+
+export const fromPairs = (data) => {
+  const result = {};
+
+  for (const [key, value] of data) {
+    result[key] = value;
+  }
+
+  return result;
+};
+
+export const bqs = (data) => {
+  const keys = Object.keys(data).sort();
+  const result = '';
+
+  for (const key of keys) {
+    result.push(`${key}=${data[key]}`);
+  }
+
+  return result.join('&');
+};

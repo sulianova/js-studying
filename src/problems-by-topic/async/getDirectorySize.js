@@ -22,7 +22,7 @@ export default (dirpath) => {
 // getDirectorySize('/usr/local/bin').then(console.log);
 
 // считает размер переданной директории не включая поддиректории на кол-бэках
-const getDirectorySize = (dirpath, cb) => {
+export const getDirectorySizeCallBack = (dirpath, cb) => {
   fs.readdir(dirpath, (error1, files) => {
     if (error1) {
       cb(error1);

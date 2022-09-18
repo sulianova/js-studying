@@ -199,6 +199,54 @@ export const bubbleSort = (coll) => {
   return coll;
 };
 
+export const quickSort = (arr) => {
+  if (arr.length < 2) return arr;
+
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * max);
+  };
+
+  const index = getRandomInt(arr.length);
+
+  let pivot = arr[index];
+  const left = [];
+  const right = [];
+    
+  for (let i = 0; i < arr.length; i += 1) {
+    if (i !== index) {
+      arr[i] < pivot ? left.push(arr[i]) : right.push(arr[i]);
+    }
+  }
+
+  return quickSort(left).concat(pivot, quickSort(right));
+};
+
+export const merge = (left, right) => {
+  let arr = [];
+
+  while (left.length && right.length) {
+      if (left[0] < right[0]) {
+          arr.push(left.shift());
+      } else {
+          arr.push(right.shift()) ;
+      }
+  }
+  
+  return [ ...arr, ...left, ...right ];
+};
+
+export const mergeSort = (array) => {
+  const half = Math.trunc(array.length / 2);
+  
+  if(array.length < 2) {
+    return array;
+  }
+  
+  const left = array.slice(0, half);
+  const right = array.slice(half, array.length);
+  return merge(mergeSort(left),mergeSort(right));
+};
+
 export const checkIsBalanced = (expression) => {
   // Инициализация стека
   const stack = [];

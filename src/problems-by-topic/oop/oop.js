@@ -78,17 +78,6 @@ const scores = [
 [6, 5],
 ];
 
-//FILTER - ПОДНЯТЬ НА УРОВЕНЬ ВВЕРХ
-function removeFirstLevel(arr) {
-    return arr.filter((elem) => Array.isArray(elem)).flat(1);
-}
-  
-const tree1 = [[5], 1, [3, 4]];
-console.log(removeFirstLevel(tree1));
-// Второй уровень тут: 5, 3, 4
-
-
-
 //ФУНКЦИЯ С БЕСКОНЕЧНОЙ РЕКУРСИЕЙ
 
 const magic = (...numbers) => {

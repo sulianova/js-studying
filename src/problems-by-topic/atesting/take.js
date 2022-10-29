@@ -1,6 +1,3 @@
-import { strict as assert } from "assert";
-// при использовании strict-режима
-// проверка equal равносильна strictEqual
 import _ from "lodash";
 
 const functions = {
@@ -12,16 +9,7 @@ const functions = {
   wrong5: (items, n = 1) => items.slice(0, n),
 };
 
-const getFunction = () => {
+export default () => {
   const name = process.env.FUNCTION_VERSION || "right1";
   return functions[name];
 };
-
-const take = getFunction();
-
-// test
-assert.deepEqual(take([], 2), []);
-assert.deepEqual(take([1, 2, 3], 2), [1, 2]);
-assert.deepEqual(take([4, 3], 9), [4, 3]);
-assert.deepEqual(take([4, 3], -1), []);
-assert.deepEqual(take([1, 2, 3]), [1]);

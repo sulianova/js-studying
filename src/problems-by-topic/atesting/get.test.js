@@ -1,6 +1,3 @@
-// ТЕСТ ДЛЯ ФУНКЦИИ GET ИЗ LODASH
-
-// function get
 import _ from "lodash";
 
 const functions = {
@@ -31,8 +28,3 @@ if (get({}, "key", "value") !== "value") {
 if (get({ key: "value" }, "key", "default value") !== "value") {
   throw new Error("boom!");
 }
-
-// example
-get({ hello: "world" }, "hello"); // world
-get({ hello: "world" }, "hello", "kitty"); // 'world'
-get({}, "hello", "kitty"); // 'kitty'

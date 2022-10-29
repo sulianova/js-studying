@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 const functions = {
   right1: (items, value, fromIndex = 0) => items.indexOf(value, fromIndex),
@@ -12,6 +12,6 @@ const functions = {
 };
 
 export default () => {
-  const name = process.env.FUNCTION_VERSION || "right1";
+  const name = process.env.FUNCTION_VERSION || 'right1';
   return functions[name];
 };

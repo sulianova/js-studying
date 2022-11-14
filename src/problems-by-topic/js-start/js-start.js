@@ -257,3 +257,16 @@ export const reverseInt = (num) => {
 };
 
 reverseInt(-123); // -321
+
+export const invertCase = (str) => {
+  let result = '';
+  for (const letter of str) {
+    if (letter == letter.toUpperCase()) {
+      result = `${result}${letter.toLowerCase()}`
+    } else {result = `${result}${letter.toUpperCase()}`};
+  }
+  return result;
+};
+
+invertCase('Hello, World!'); // hELLO, wORLD!
+invertCase('I loVe JS');     // i LOvE js

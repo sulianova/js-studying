@@ -241,3 +241,19 @@ export const encrypt = (str) => {
 
 encrypt('attack');
 // => taatkc
+
+//Реализуйте и экспортируйте по умолчанию функцию,
+//которая переворачивает цифры в переданном числе и возвращает новое число.
+export const reverseInt = (num) => {
+  let result = '';
+  const initialString = Math.abs(num).toString();
+  const sign = num/Math.abs(num);
+
+  for (const int of initialString) {
+    result = `${int}${result}`;
+  }
+
+  return sign * Number(result);
+};
+
+reverseInt(-123); // -321

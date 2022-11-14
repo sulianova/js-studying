@@ -1,28 +1,5 @@
 ## JS: Objects
 
-### Добавить в объект новый ключ со значением
-
-```
-const staff = {
-  'general director': {
-    name: 'Belkin Igor',
-    age: '45',
-    married: true,
-    children: false,
-  },
-
-  'product manager': {
-    name: 'Eliseeva Helen',
-    age: '35',
-    married: false,
-    children: ['Ivan', 'Alex'],
-  },
-};
-
-staff['general director'].number = '88009870478';
-staff['product manager'].number = '88009870000';
-```
-
 ### normalize
 Реализуйте и экспортируйте по умолчанию функцию, которая "нормализует" данные переданного урока. То есть приводит их к определенному виду. Нормализация происходит путём изменения исходного объекта.
 

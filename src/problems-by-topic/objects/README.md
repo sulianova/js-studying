@@ -215,3 +215,33 @@ genDiff(
 //   zero: 'added',
 // }
 ```
+
+### findWhere
+Реализуйте и экспортируйте по умолчанию функцию, которая принимает на вход массив (элементы которого — это объекты) и пары ключ-значение (тоже в виде объекта), а возвращает первый элемент исходного массива, значения которого соответствуют переданным парам (всем переданным). Если совпадений не было, то функция должна вернуть null.
+
+```
+findWhere(
+  [
+    { title: 'Book of Fooos', author: 'FooBar', year: 1111 },
+    { title: 'Cymbeline', author: 'Shakespeare', year: 1611 },
+    { title: 'The Tempest', author: 'Shakespeare', year: 1611 },
+    { title: 'Book of Foos Barrrs', author: 'FooBar', year: 2222 },
+    { title: 'Still foooing', author: 'FooBar', year: 3333 },
+    { title: 'Happy Foo', author: 'FooBar', year: 4444 },
+  ],
+  { author: 'Shakespeare', year: 1611 }
+); // { title: 'Cymbeline', author: 'Shakespeare', year: 1611 }
+```
+
+### scrabble
+Реализуйте и экспортируйте по умолчанию функцию-предикат, которая принимает на вход два параметра: набор символов в нижнем регистре (строку) и слово, и проверяет, можно ли из переданного набора составить это слово. В результате вызова функция возвращает true или false.
+
+При проверке учитывается количество символов, нужных для составления слова, и не учитывается их регистр.
+
+```
+scrabble('rkqodlw', 'world'); // true
+scrabble('avj', 'java'); // false
+scrabble('avjafff', 'java'); // true
+scrabble('', 'hexlet'); // false
+scrabble('scriptingjava', 'JavaScript'); // true
+```

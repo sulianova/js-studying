@@ -153,7 +153,7 @@ export const genDiff = (data1, data2) => {
 
 export const findWhere = (data, where) => {
   const entries = Object.entries(where);
-  
+
   for (const item of data) {
     let find = true;
     for (const [key, value] of entries) {
@@ -167,4 +167,31 @@ export const findWhere = (data, where) => {
   }
 
   return null;
+};
+
+// import _ from 'lodash';
+
+const countLetters = (str) => {
+  let numberOfLetters = {};
+
+  for (const letter of str) {
+      numberOfLetters[letter] = (numberOfLetters[letter] ?? 0 ) + 1;
+  }
+    
+  return numberOfLetters;
+};
+
+export const scrabble = (str, word) => {
+  const lowerCaseWord = word.toLowerCase();
+  const lettersStr = countLetters(str);
+  
+  for (const letter of lowerCaseWord) {
+    const count = _.get(lettersStr, letter, 0);
+    if (count === 0) {
+      return false;
+    }
+    lettersStr[letter] -= 1;
+  }
+
+  return true;
 };

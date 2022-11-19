@@ -414,3 +414,15 @@ export const isContinuousSequence = (sequence) => {
 
   return true;
 };
+
+// import _ from 'lodash';
+export const rotateLeft = (matrix) => {
+  const newMatrix = matrix;
+  return _.reverse(_.zip(...newMatrix));
+};
+
+import _ from 'lodash';
+export const rotateRight = (matrix) => {
+  const newMatrix = matrix;
+  return _.zip(..._.reverse(newMatrix));
+};

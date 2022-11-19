@@ -119,7 +119,7 @@ export const getSuperSeriesWinner = (coll) => {
   return canadaVins > (coll.length - bothVins) / 2 ? 'canada' : canadaVins === (coll.length - bothVins) / 2 ? null : 'ussr';
 };
 
-const buildDefinitionList = (definitions) => {
+export const buildDefinitionList = (definitions) => {
   if (definitions.length === 0) {
     return '';
   }
@@ -162,7 +162,7 @@ export const getSameCount = (array1, array2) => {
 };
 
 // import _ from 'lodash';
-const countUniqChars = (str) => {
+export const countUniqChars = (str) => {
   const array = str.split('');
   const result = _.uniq(array);
   return result.length;
@@ -401,4 +401,16 @@ export const buildSnailPath = (matrix) => {
   }
   const [head, ...tail] = matrix;
   return [head, buildSnailPath(rotate(tail))].flat();
+};
+
+export const isContinuousSequence = (sequence) => {
+  if (sequence.length <= 1) return false;
+
+  for (let i = 0; i < sequence.length - 1; i += 1) {
+    if (sequence[i] + 1 !== sequence[i+1]) {
+      return false;
+    }
+  }
+
+  return true;
 };

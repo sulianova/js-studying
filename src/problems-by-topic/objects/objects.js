@@ -79,6 +79,7 @@ export const fill = (current, keys, data) => {
   Object.assign(current, filteredData);
 };
 
+// import isObject from 'lodash/isObject.js';
 export const cloneDeep = (object) => {
   const result = {};
   const entries = Object.entries(object);

@@ -79,7 +79,7 @@ export const fill = (current, keys, data) => {
   Object.assign(current, filteredData);
 };
 
-// import isObject from 'lodash/isObject.js';
+import isObject from 'lodash/isObject.js';
 export const cloneDeep = (object) => {
   const result = {};
   const entries = Object.entries(object);
@@ -173,19 +173,19 @@ export const findWhere = (data, where) => {
 // import _ from 'lodash';
 
 const countLetters = (str) => {
-  let numberOfLetters = {};
+  const numberOfLetters = {};
 
   for (const letter of str) {
-      numberOfLetters[letter] = (numberOfLetters[letter] ?? 0 ) + 1;
+    numberOfLetters[letter] = (numberOfLetters[letter] ?? 0) + 1;
   }
-    
+
   return numberOfLetters;
 };
 
 export const scrabble = (str, word) => {
   const lowerCaseWord = word.toLowerCase();
   const lettersStr = countLetters(str);
-  
+
   for (const letter of lowerCaseWord) {
     const count = _.get(lettersStr, letter, 0);
     if (count === 0) {

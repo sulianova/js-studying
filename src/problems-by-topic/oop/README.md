@@ -298,3 +298,25 @@ node.getRight().getKey(); // 7
 tree.search(35); // null
 tree.search(3).getLeft(); // null
 ```
+
+### node2
+Реализуйте и экспортируйте по умолчанию класс, который реализует представление узла.
+Класс должен содержать:
+* Геттер getKey() — возвращает ключ.
+* Геттеры getLeft(), getRight() — возвращают соответственно левого и правого ребёнка. Если ребёнок в узле отсутствует, геттер возвращает null.
+* Метод insert(key) — выполняет добавление узла, формируя правильное двоичное дерево.
+
+```
+const tree = new Node();
+tree.insert(9);
+tree.insert(17);
+tree.insert(4);
+tree.insert(3);
+tree.insert(6);
+ 
+tree.getKey(); // 9
+tree.getLeft().getKey(); // 4
+tree.getRight().getKey(); // 17
+tree.getLeft().getLeft().getKey(); // 3
+tree.getLeft().getRight().getKey(); // 6
+```

@@ -1,4 +1,3 @@
-// НОРМАЛИЗОВАТЬ И ОТСОТРИРОВАТЬ СЛОЖНЫЙ ОБЪЕКТ
 export default (data) =>
   data
     .map(({ name, country }) => [
@@ -15,26 +14,3 @@ export default (data) =>
       // Array.from(uniqueCities);
       return { ...acc, [country]: [...uniqueCities] };
     }, {});
-
-// example
-// const countries = [
-//   { name: 'istanbul', country: 'turkey' },
-//   { name: 'Moscow ', country: ' Russia' },
-//   { name: 'iStanbul', country: 'tUrkey' },
-//   { name: 'antalia', country: 'turkeY ' },
-//   { name: 'samarA', country: '  ruSsiA' },
-//   { name: 'Miami', country: 'usa' },
-// ];
-
-// const normalizedContries = normalize(countries);
-
-// console.log(normalizedContries);
-// {
-//   russia: [
-//     'moscow',
-//     'samara',
-//   ],
-//   usa: [
-//     'miami',
-//   ],
-// }

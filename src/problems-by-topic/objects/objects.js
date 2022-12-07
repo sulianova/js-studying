@@ -196,3 +196,15 @@ export const scrabble = (str, word) => {
 
   return true;
 };
+
+export const sortByCount = (numbers) => {
+  const numByCount = {};
+
+  for (const num of numbers) {
+    numByCount[num] = (numByCount[num] ?? 0) + 1;
+  }
+  const entries = Object.entries(numByCount);
+  const result = entries.sort((a, b) => b[1] - a[1]);
+  return result.map((value) => Number(value[0]));
+
+};

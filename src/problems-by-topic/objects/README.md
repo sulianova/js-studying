@@ -245,3 +245,11 @@ scrabble('avjafff', 'java'); // true
 scrabble('', 'hexlet'); // false
 scrabble('scriptingjava', 'JavaScript'); // true
 ```
+
+### sortByCount
+Отсортировать массив по частоте встречаемости
+
+```
+const array = [1, 2, 3, 3, 4, 9, 3, 4, 4, 5, 5, 5, 5];
+sortByCount(array); // [ 5, 3, 4, 1, 2, 9 ]
+```

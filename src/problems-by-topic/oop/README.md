@@ -354,3 +354,147 @@ tree.every((key) => key < 22); // false
 tree.some((key) => key < 4); // true
 tree.some((key) => key > 22); // false
 ```
+
+### PasswordValidator
+Реализуйте и экспортируйте по умолчанию класс PasswordValidator, ориентируясь на тесты.
+
+Этот валидатор поддерживает следующие опции:
+* minLength (по умолчанию 8) - минимальная длина пароля
+* containNumbers (по умолчанию true) - требование содержать хотя бы одну цифру
+Опции передаются одним объектом в конструктор валидатора.
+
+```
+const validator = new PasswordValidator({ containNumbers: false });
+validator.validate('qwertyui'); // {}
+validator.validate('qwerty'); // { minLength: 'too small' }
+```
+
+### Truncater
+Реализуйте в классе Truncater конструктор и метод truncate(). Метод принимает текст и следующие опции:
+* separator - символ, заменяющий обрезанную часть строки
+* length - максимальная длина исходной строки. Если строка короче, чем эта опция, то возвращается исходная строка.
+Конфигурацию по умолчанию можно переопределить через конструктор класса и вторым аргументом метода truncate(). Оба способа можно комбинировать.
+
+```
+const truncater = new Truncater();
+truncater.truncate('one two'); // 'one two'
+truncater.truncate('one two', { 'length': 6 }); // 'one tw...'
+ 
+const truncater = new Truncater({ 'length': 6 });
+truncater.truncate('one two', { 'separator': '.' }); // 'one tw.'
+truncater.truncate('one two', { 'length': '3' }); // 'one...'
+```
+
+Опции по умолчанию заданы, как статическое свойство класса. Обратите на это внимание при объединении исходных опций с пользовательскими.
+
+### Url
+Реализуйте и экспортируйте по умолчанию класс для работы с HTTP-адресом. Класс должен содержать конструктор и методы:
+* конструктор — принимает на вход HTTP-адрес в виде строки
+* getScheme() — возвращает протокол передачи данных (без двоеточия)
+* getHostName() — возвращает имя хоста
+* getQueryParams() — возвращает параметры запроса в виде пар ключ-значение объекта
+* getQueryParam() — получает значение параметра запроса по имени. Если параметр с переданным именем не существует, метод возвращает значение заданное вторым параметром (по умолчанию равно null)
+* equals(url) — принимает объект класса Url и возвращает результат сравнения с текущим объектом — true или false
+
+```
+const url = new Url('http://yandex.ru:80?key=value&key2=value2');
+url.getScheme(); // 'http'
+url.getHostName(); // 'yandex.ru'
+url.getQueryParams();
+// {
+//   key: 'value',
+//   key2: 'value2',
+// };
+url.getQueryParam('key'); // 'value'
+// второй параметр - значение по умолчанию
+url.getQueryParam('key2', 'lala'); // 'value2'
+url.getQueryParam('new', 'ehu'); // 'ehu'
+url.getQueryParam('new'); // null
+url.equals(new Url('http://yandex.ru:80?key=value&key2=value2')); // true
+url.equals(new Url('http://yandex.ru:80?key=value')); // false
+```
+
+Подсказки:
+* В процессе прохождения испытания нужно будет хорошо поработать с документацией и изучить возможности стандартного класса URL. Это поможет использовать его для парсинга адреса на нужные составляющие.
+* Не используйте в решении устаревшие возможности, помеченные как deprecated (parse, format и другие).
+* Для работы с query string изучите методы класса URLSearchParams.
+* Для преобразования списка пар ключ-значение в объект можно использовать метод Object.fromEntries()
+* Что означает двойной знак вопроса "??" в выражении?
+
+### normalize
+Реализуйте и экспортируйте по умолчанию функцию normalize() которая принимает на вход список городов и стран, нормализует их имена, сортирует города и группирует их по стране.
+
+```
+const countries = [
+  { name: 'Miami', country: 'usa' },
+  { name: 'samarA', country: '  ruSsiA' },
+  { name: 'Moscow ', country: ' Russia' },
+];
+ 
+normalize(countries);
+// {
+//   russia: [
+//     'moscow',
+//     'samara',
+//   ],
+//   usa: [
+//     'miami',
+//   ],
+// }
+```
+
+### getInvalidBooks
+Реализуйте и экспортируйте по умолчанию функцию, которая принимает на вход список книг, находит среди них невалидные и возвращает их наружу.
+
+```
+const books = [
+  { name: 'book', author: 'author' },
+  { author: 'author 2' },
+];
+const invalidBooks = getInvalidBooks(books); // [{ author: 'author 2' }]
+```
+
+Описания формата каждой книги:
+* name – строка, обязательное
+* author – строка, обязательное
+* pagesCount – положительное число, необязательное
+* link – строка url, необязательное, не может быть пустой строкой; ссылка на книгу в интернете
+* genre – строка, необязательное; жанр книги. Должен входить в список определенный в файле index.js
+
+Подсказки
+* oneOf – проверка вхождения в список
+* isValidSync – проверка валидности
+
+### protect (+ Course.js)
+JavaScript долгое время не поддерживал приватных свойств и методов. Для них появилось соглашение об именовании с нижнего подчёркивания _, чтобы предотвратить доступ ко внутренностям объекта в обход интерфейса. Но сама возможность прямого доступа остаётся. Нам предстоит разработать обёртку над объектом, защищающую его приватные свойства от прямого доступа.
+
+Реализуйте и экспортируйте по умолчанию функцию, которая принимает объект и позволяет обращаться только к "публичным" свойствам и методам. При попытке прочитать или перезаписать приватное или несуществующее свойство должно выбрасываться исключение.
+
+```
+class Course {
+  constructor(name) {
+    this._name = name;
+  }
+ 
+  getName() {
+    return this._name;
+  }
+}
+ 
+const course = new Course('Object-oriented design');
+const protectedCourse = protect(course);
+ 
+course.getName(); // "Object-oriented design"
+protectedCourse.getName(); // "Object-oriented design"
+course._name; // "Object-oriented design"
+course._nonExists; // undefined
+ 
+protectedCourse._name; // Error
+protectedCourse._name = 'OOD'; // Error
+protectedCourse._nonExists; // Error
+```
+
+В реализации используйте Proxy. Подсказки:
+* Чтобы избежать потери контекста для методов, используйте связывание через bind.
+* Определить, что по ключу возвращается метод можно через оператор typeof.
+* Документация обработчика set

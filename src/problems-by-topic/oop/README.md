@@ -530,3 +530,37 @@ buildRange(dates, beginDate, endDate);
 Документация по функциям для работы с датами:
 * https://date-fns.org/v2.16.1/docs/eachDayOfInterval
 * https://date-fns.org/v2.16.1/docs/format
+
+### createObject
+Объекты JavaScript позволяют обращаться к собственным свойствам. При обращении к свойству, которое не было установлено, возвращается undefined:
+```
+const obj = {
+  key: 'value',
+  key2: {
+    key3: 'value3',
+  },
+};
+ 
+obj.key2 // { key3: 'value3' }
+obj.key2.key1 // undefined
+obj.key2.key1.key0 // Uncaught TypeError: Cannot read property 'key0' of undefined
+```
+В этом испытании мы реализуем особый объект, позволяющий обращаться к несуществующим свойствам, не получая ошибки.
+
+Реализуйте и экспортируйте по умолчанию функцию, которая принимает объект и позволяет получать из него свойства по любому имени. При обращении к несуществующему свойству не должно выбрасываться исключений или возвращаться undefined. Функция должна возвращать объект Proxy.
+
+```
+const obj = createObject({
+  key: 'value',
+  key2: {
+    key3: 'value3',
+  },
+});
+ 
+obj.key2 // { key3: 'value3' }
+ 
+// код корректно продолжает работу:
+obj.key2.key1
+obj.key2.key1.key0
+obj.obj.obj
+```

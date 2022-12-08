@@ -253,3 +253,17 @@ scrabble('scriptingjava', 'JavaScript'); // true
 const array = [1, 2, 3, 3, 4, 9, 3, 4, 4, 5, 5, 5, 5];
 sortByCount(array); // [ 5, 3, 4, 1, 2, 9 ]
 ```
+
+### usersByAge
+Распределить людей по возрасту
+
+```
+const users = [
+  { name: 'Petr', age: 4 },
+  { name: 'Igor', age: 19 },
+  { name: 'Vovan', age: 4 },
+  { name: 'Matvey', age: 16 },
+];
+
+const usersByAge = users.reduce(usersByAge, {}); // { '4': [ 'Petr', 'Vovan' ], '16': [ 'Matvey' ], '19': [ 'Igor' ] }
+```

@@ -208,3 +208,11 @@ export const sortByCount = (numbers) => {
   return result.map((value) => Number(value[0]));
 
 };
+
+export const usersByAge = (acc, user) => {
+  if (!Object.hasOwn(acc, user.age)) {
+    acc[user.age] = [];
+  }
+  acc[user.age].push(user.name);
+  return acc;
+};

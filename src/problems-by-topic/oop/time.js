@@ -10,7 +10,7 @@ toString() {
 }
 
 static fromString(str) {
-  const [hours, minutes] = time.split(':');
+  const [hours, minutes] = str.split(':');
   return new Time(hours, minutes);
 }
 

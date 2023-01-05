@@ -1,18 +1,10 @@
-// ТАЙМЕР-ПРОМИС
 export default (ms) => new Promise((resolve) => {
   setTimeout(() => {
     resolve();
   }, ms);
 });
 
-// alternative version
-// export default (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// check
-// wait(1000).then(() => console.log('time is over!'));
-
-// ТАЙМЕР-ПРОМИС, который ловит и выводит ошибку
-const myFunc = (str) => new Promise((resolve, reject) => {
+export const wait = (str) => new Promise((resolve, reject) => {
   setTimeout(() => {
     try {
       str.toLowerCase();

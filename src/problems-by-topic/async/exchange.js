@@ -1,14 +1,11 @@
-// ОБМЕНЯТЬ ДАННЫЕ В ДВУХ ФАЙЛАХ
-
 import fsp from 'fs/promises';
 
-export default async (path1, path2) => {
-  const promise1 = fsp.readFile(path1, 'utf-8');
-  const promise2 = fsp.readFile(path2, 'utf-8');
-  const [data1, data2] = await Promise.all([promise1, promise2]);
-  await fsp.writeFile(path1, `${data2}`);
-  await fsp.writeFile(path2, `${data1}`);
-};
+export default async (filepath1, filepath2) => {
+  const reading1 = fsp.readFile(filepath1);
+  const reading2 = fsp.readFile(filepath2);
+  const [data1, data2] = await Promise.all([reading1, reading2]);
+  const writing1 = fsp.writeFile(filepath1, data2);
+  const writing2 = fsp.writeFile(filepath2, data1);
+  await Promise.all([writing1, writing2]);
 
-// example
-// exchange('/myfile1', '/myfile2');
+};

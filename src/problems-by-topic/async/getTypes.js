@@ -1,4 +1,3 @@
-// ПРОВЕРИТЬ ФАЙЛ ИЛИ ДИРЕКТОРИЯ, ВЫВЕСТИ ОТВЕТ В МАССИВ
 import fsp from 'fs/promises';
 
 const getTypeName = (stat) => (stat.isDirectory() ? 'directory' : 'file');
@@ -15,7 +14,3 @@ export default (filesPath) => {
   );
   return resultPromise;
 };
-
-// example
-// getTypes(['/etc', '/etc/hosts', '/undefined']).then(console.log);
-// ['directory', 'file', null]

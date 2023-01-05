@@ -1,5 +1,3 @@
-// ФУНКЦИЯ, КОТОРАЯ СЛЕДИТ ЗА ИЗМЕНЕНИЕМ ФАЙЛА С ЗАДАННОЙ ПЕРИОДИЧНОСТЬЮ
-
 import fs from 'fs';
 
 export default (filepath, period, cb) => {

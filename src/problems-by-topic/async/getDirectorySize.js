@@ -20,3 +20,4 @@ export const getDirectorySize = (dirpath, cb) => {
     });
   });
 };
+

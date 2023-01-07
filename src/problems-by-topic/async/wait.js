@@ -1,3 +1,5 @@
+import { resolve } from "path";
+
 export default (ms) => new Promise((resolve) => {
   setTimeout(() => {
     resolve();

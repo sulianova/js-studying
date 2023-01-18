@@ -1,4 +1,3 @@
-// ЗАМЕНИТЬ kebab НОТАЦИИ НА camelCase ВО ВСЕХ КЛАССАХ
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import camelCase from 'lodash/camelCase';

@@ -1,5 +1,3 @@
-// АВТОКОМПЛИТ
-
 import 'whatwg-fetch';
 import { htmlEscape } from 'escape-goat';
 

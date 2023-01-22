@@ -52,3 +52,85 @@ const response = await axios.post(routes.tasksPath(), data); // Где data эт
 // response.status содержит 201 в случае успеха
 ```
 Во время инициализации (внутри функции), приложение должно делать запрос на сервер, извлекать оттуда уже добавленные задачи и выводить их на экран. Во время добавления новой задачи, приложение должно выполнять запрос на добавление задачи на сервер.
+
+### app3
+Реализуйте и экспортируйте функцию по умолчанию, которая активизирует фильтр на основе формы доступной в public/index.html. Изменение любого параметра должно сразу приводить к фильтрации. Ноутбуки, подходящие под фильтр, выводятся внутри `<div class="result"></div>` как список ul/li моделей (свойство model внутри объекта представляющего ноутбук). Полный список ноутбуков доступен в файле src/index.js.
+
+Условия:
+* Если фильтр пустой, то выводится все.
+* Если под фильтр ничего не подходит, то список не выводится.
+
+Подсказки
+* Для отслеживания изменений текстовых инпутов используйте событие input. Для select - change.
+* Для фильтрации товаров по выбранным фильтрам используйте метод массива every()
+* На старте фильтры не указаны, поэтому должен отрисовываться весь список
+
+html:
+```
+<body>
+  <div class="container m-3">
+    <div class="row">
+      <div class="col-6">
+        <form>
+          <div>
+            <label>
+              Processor
+              <select name="processor_eq">
+                <option value="">Select</option>
+                <option value="intel">Intel</option>
+                <option value="amd">AMD</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              Memory
+              <select name="memory_eq">
+                <option value="">Select</option>
+                <option value="8">8</option>
+                <option value="16">16</option>
+                <option value="32">32</option>
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              Frequency Min
+              <input type="number" name="frequency_gte" min="1" max="5" value="">
+            </label>
+          </div>
+          <div>
+            <label>
+              Frequency Max
+              <input type="number" name="frequency_lte" min="1" max="5" value="">
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="col-6">
+        <div class="result"></div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./src/index.js"></script>
+</body>
+```
+
+script:
+```
+import app from './application.js';
+
+const laptops = [
+  {
+    model: 'v1', processor: 'intel', frequency: 1.7, memory: 16,
+  },
+  {
+    model: 'd3', processor: 'intel', frequency: 3.5, memory: 8,
+  },
+  {
+    model: 'd2', processor: 'amd', frequency: 2.5, memory: 16,
+  },
+];
+
+app(laptops);
+```

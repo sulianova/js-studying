@@ -13,7 +13,6 @@ const inputsConfig = {
 
 const filterItems = (items, query) => {
   const activeFilters = Object.entries(query).filter(([, filterValue]) => filterValue !== null);
-  // Фильтрация товаров: каждый товар должен удовлетворять каждому фильтру из списка
   return items.filter((item) => activeFilters.every(([filterName, filterValue]) => {
     const [propertyName, predicate] = filterName.split('_');
     const match = predicates[predicate];

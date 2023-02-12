@@ -4,9 +4,9 @@ const routes = {
   tasksPath: () => '/api/tasks',
 };
 
-const render = (state, { form, input, tasksContainer }) => {
-  form.reset();
-  input.focus();
+const render = (state, formEl, inputEl, tasksContainer) => {
+  formEl.reset();
+  inputEl.focus();
   const tasksElements = state.tasks.map((task) => {
     const el = document.createElement('li');
     el.classList.add('list-group-item');
@@ -24,8 +24,8 @@ const app = async () => {
     tasks: response.data.items,
   };
 
-  const form = document.querySelector('form');
-  const input = document.querySelector('input');
+  const formEl = document.querySelector('form');
+  const inputEl = document.querySelector('input');
   const tasksContainer = document.querySelector('#tasks');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -40,10 +40,10 @@ const app = async () => {
       console.error(error); // eslint-disable-line no-console
     }
 
-    render(state, { form, input, tasksContainer });
+    render(state, formEl, inputEl, tasksContainer);
   });
 
-  render(state, { form, input, tasksContainer });
+  render(state, formEl, inputEl, tasksContainer);
 };
 
 export default app;

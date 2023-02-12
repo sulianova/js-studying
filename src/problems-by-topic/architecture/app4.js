@@ -1,6 +1,6 @@
 const render = (state, container) => {
   container.innerHTML = '';
-  const buttons = state.companies.map(({ id, name }) => {
+  const buttons = state.companies.map(({id, name}) => {
     const button = document.createElement('button');
     button.setAttribute('type', 'button');
     button.classList.add('btn', 'btn-primary');

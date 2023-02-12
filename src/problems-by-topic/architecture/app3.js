@@ -1,7 +1,7 @@
 const predicates = {
-  eq: (value) => (el) => String(el) === String(value),
-  gte: (value) => (el) => (el) >= Number(value),
-  lte: (value) => (el) => (el) <= Number(value),
+  eq: (value, el) => String(el) === String(value),
+  gte: (value, el) => el >= Number(value),
+  lte: (value, el) => el <= Number(value),
 };
 
 const inputsConfig = {
@@ -17,20 +17,20 @@ const filterItems = (items, query) => {
     const [propertyName, predicate] = filterName.split('_');
     const match = predicates[predicate];
     const itemProperty = item[propertyName];
-    return match(filterValue)(itemProperty);
+    return match(filterValue, itemProperty);
   }));
 };
 
 const render = (state) => {
-  const resultElement = document.querySelector('.result');
-  const filtered = filterItems(state.laptops, state.filter);
+  const resultEl = document.querySelector('.result');
+  const filteredItems = filterItems(state.laptops, state.filter);
 
-  if (filtered.length === 0) {
-    resultElement.innerHTML = '';
+  if (filteredItems.length === 0) {
+    resultEl.textContent = '';
     return;
   }
-  const html = `<ul>${filtered.map((item) => `<li>${item.model}</li>`).join('')}</ul>`;
-  resultElement.innerHTML = html;
+  const html = `<ul>${filteredItems.map((item) => `<li>${item.model}</li>`).join('')}</ul>`;
+  resultEl.innerHTML = html;
 };
 
 export default (laptops) => {
@@ -45,9 +45,9 @@ export default (laptops) => {
   };
 
   Object.entries(inputsConfig).forEach(([inputName, eventName]) => {
-    const input = document.querySelector(`[name="${inputName}"]`);
-    input.addEventListener(eventName, ({ target }) => {
-      state.filter[inputName] = target.value === '' ? null : target.value;
+    const inputEl = document.querySelector(`[name="${inputName}"]`);
+    inputEl.addEventListener(`${eventName}`, (e) => {
+      state.filter[inputName] = e.target.value === '' ? null : e.target.value;
       render(state);
     });
   });

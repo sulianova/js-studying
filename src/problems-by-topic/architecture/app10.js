@@ -1,41 +1,14 @@
 import i18n from 'i18next';
 import onChange from 'on-change';
-import resources from './locales/index.js';
-
-const ru = {
-  translation: {
-    languages: {
-      en: "English",
-      ru: "Русский",
-    },
-    buttons: {
-      counter: {
-        count_one: '{{count}} клик',
-        count_few: '{{count}} клика',
-        count_many: '{{count}} кликов',
-      },
-      reset: "Сбросить",
-    },
-  },
-};
-
-const en = {
-  translation: {
-    languages: {
-      en: "English",
-      ru: "Русский",
-    },
-    buttons: {
-      counter: {
-        count_one: '{{count}} click',
-        count_other: '{{count}} clicks',
-      },
-      reset: "Reset",
-    },
-  },
-};
+import resources from './app10Resourses.js';
 
 const languages = ['en', 'ru'];
+
+const handleSwitchLanguage = (state) => (evt) => {
+  const { lng } = evt.target.dataset;
+
+  state.lng = lng;
+};
 
 const render = (container, watchedState, i18nInstance) => {
   const lngToggler = document.createElement('div');
@@ -44,29 +17,26 @@ const render = (container, watchedState, i18nInstance) => {
 
   languages.forEach((lng) => {
     const btn = document.createElement('button');
-    const className = (watchedState.lng === lng) ? 'btn-primary' : 'btn-outline-primary';
-    btn.classList.add('btn', 'mb-3', className);
     btn.setAttribute('type', 'button');
+    const className = watchedState.lng === lng ? 'btn-primary' : 'btn-outline-primary';
+    btn.classList.add('btn', 'mb-3', className);
     btn.setAttribute('data-lng', lng);
     btn.textContent = i18nInstance.t(`languages.${lng}`);
-    btn.addEventListener('click', (e) => {
-      watchedState.lng = e.target.dataset.lng;
-    });
-    lngToggler.append(btn);
+    btn.addEventListener('click', handleSwitchLanguage(watchedState));
+    lngToggler.appendChild(btn);
   });
 
-
   const counter = document.createElement('button');
-  counter.classList.add('btn', 'btn-info', 'mb-3', 'align-self-center');
   counter.setAttribute('type', 'button');
+  counter.classList.add('btn', 'btn-info', 'btn-lg', 'mb-3', 'align-self-center');
   counter.textContent = i18nInstance.t('buttons.counter.count', { count: watchedState.clicksCount });
   counter.addEventListener('click', () => {
     watchedState.clicksCount += 1;
   });
 
   const reset = document.createElement('button');
-  reset.classList.add('btn', 'btn-warning');
   reset.setAttribute('type', 'button');
+  reset.classList.add('btn', 'btn-warning');
   reset.textContent = i18nInstance.t('buttons.reset');
   reset.addEventListener('click', () => {
     watchedState.clicksCount = 0;
@@ -76,24 +46,26 @@ const render = (container, watchedState, i18nInstance) => {
   container.append(lngToggler, counter, reset);
 };
 
-export default async () => {
-  // Model
+export default async (container, initialState = {}) => {
+
   const defaultLanguage = 'en';
-  const container = document.querySelector('.container');
-  const i18nInstance = i18n.createInstance();
-  await i18nInstance.init({
-    lng: defaultLanguage,
-    debug: false,
-    resources,
-  });
 
   const state = {
     lng: defaultLanguage,
     clicksCount: 0,
+    ...initialState,
   };
+  
+  const i18nInstance = i18n.createInstance();
+  await i18nInstance.init({
+    lng: state.lng,
+    debug: false,
+    resources,
+  });
 
-  // View
-  const watchedState = onChange(state, (path, value, previousValue) => {
+
+
+  const watchedState = onChange(state, (path, value) => {
     switch (path) {
       case 'lng': i18nInstance.changeLanguage(value).then(() => render(container, watchedState, i18nInstance));
         break;
@@ -106,6 +78,5 @@ export default async () => {
     }
   });
 
-  // Controller
   render(container, watchedState, i18nInstance);
 };

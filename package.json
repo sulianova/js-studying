@@ -24,6 +24,7 @@
     "i18next": "^22.4.9",
     "jquery": "^3.6.3",
     "lodash": "^4.17.21",
+    "on-change": "^4.0.2",
     "path": "^0.12.7",
     "regenerator-runtime": "^0.13.9",
     "url": "^0.11.0",

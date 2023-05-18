@@ -322,3 +322,53 @@ app9.js
 ```
 
 Проверьте что переключение одного счётчика не влияет на другой.
+
+### app11
+Реализуйте логику работы формы для добавления новых todo записей:
+
+форма поддерживает валидацию ввода (обязательное поле, минимум 3, максимум 30 символов)
+на время загрузки новой записи поля формы и кнопка отправки должны блокироваться
+В приложении есть сервер, принимающий POST-запросы c телом { todo: { name } } на /todos. Определите формат ответа сервера самостоятельно.
+
+Начальный HTML:
+```
+<form id="todo-form" class="form-inline mb-3">
+  <div class="form-group">
+    <input id="todo-input" type="text" class="form-control mr-2" name="name" placeholder="New todo">
+  </div>
+  <button id="todo-submit" class="btn btn-primary" type="submit">Save</button>
+</form>
+<ul id="todos" class="list-group">
+</ul>
+```
+
+При попытке отправки слишком короткой записи:
+```
+<form id="todo-form" class="form-inline mb-3">
+  <div class="form-group">
+    <input id="todo-input" type="text" class="form-control mr-2 is-invalid" name="name" placeholder="New todo">
+    <div class="invalid-feedback">this must be at least 3 characters</div>
+  </div>
+  <button id="todo-submit" class="btn btn-primary" type="submit">Save</button>
+</form>
+<ul id="todos" class="list-group">
+</ul>
+```
+
+После успешной отправки:
+```
+<form id="todo-form" class="form-inline mb-3">
+  <div class="form-group">
+    <input id="todo-input" type="text" class="form-control mr-2" name="name" placeholder="New todo">
+  </div>
+  <button id="todo-submit" class="btn btn-primary" type="submit">Save</button>
+</form>
+<ul id="todos" class="list-group">
+  <li>read books</li>
+</ul>
+```
+
+Подсказки
+* для обработки ошибок приложения (например, сетевые ошибки) можно использовать компонент toast, в разметке есть заготовка.
+* yup функции для валидации асинхронные, но можно использовать их синхронные версии.
+* onchange

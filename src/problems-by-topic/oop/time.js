@@ -1,5 +1,4 @@
 export default class Time {
-
 constructor(hours, minutes) {
   this.minutes = minutes;
   this.hours = hours;
